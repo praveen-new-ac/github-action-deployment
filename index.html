@@ -3,29 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Form</title>
+    <title>Account Registration</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333333;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666666;
+            font-size: 14px;
+            font-weight: 6px;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #4a90e2;
+        }
+
+        .gender-group {
+            margin: 15px 0;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .gender-options label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .checkbox-group input {
+            margin-top: 3px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 13px;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #357abd;
+        }
+
+        .form-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .form-footer a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Contact Us</h1>
+<div class="form-container">
+    <h2>Create an Account</h2>
+    <form action="/submit-registration" method="POST">
+        
+        <!-- Full Name -->
+        <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+        </div>
 
-    <form action="/submit_form.php" method="post">
-        <p>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="user_name" required>
-        </p>
-        <p>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="user_email" required>
-        </p>
-        <p>
-            <label for="message">Message:</label>
-            <textarea id="message" name="user_message" rows="5"></textarea>
-        </p>
-        <p>
-            <button type="submit">Submit</button>
-        </p>
+        <!-- Email Address -->
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="123-456-7890">
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" minlength="8" placeholder="At least 8 characters" required>
+        </div>
+
+        <!-- Country Selection -->
+        <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country" name="country" required>
+                <option value="" disabled selected>Select your country</option>
+                <option value="USA">United States</option>
+                <option value="UK">United Kingdom</option>
+                <option value="Canada">Canada</option>
+                <option value="India">India</option>
+                <option value="Australia">Australia</option>
+            </select>
+        </div>
+
+        <!-- Gender Options -->
+        <div class="gender-group">
+            <label>Gender</label>
+            <div class="gender-options">
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female"> Female</label>
+                <label><input type="radio" name="gender" value="other"> Other</label>
+            </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="checkbox-group">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the Terms of Service and Privacy Policy.</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-submit">Register</button>
+
     </form>
+
+    <div class="form-footer">
+        Already have an account? <a href="/login">Log In</a>
+    </div>
+</div>
 
 </body>
 </html>
