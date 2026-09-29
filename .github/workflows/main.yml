@@ -19,4 +19,4 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy Static Site to S3 Bucket
-        run: aws s3 sync . s3://deploy-bucket-098708/
+        run: aws s3 sync . s3://aws-github-action-bucket-3387/
